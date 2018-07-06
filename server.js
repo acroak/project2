@@ -9,7 +9,7 @@ const mongoUri =  process.env.MONGODB_URI || 'mongodb://localhost:27017/grocery_
 
 
 app.get('/', (req,res)=>{
-  res.send('server is running');
+  res.render('index.ejs');
 });
 
 app.listen(port, ()=>{
