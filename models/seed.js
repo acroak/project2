@@ -1,11 +1,11 @@
 let seedPlants = [
   {
-    name: String,
-    sciname: String,
-    diff: Number,
-    sun: [String],
-    tags:[String],
-    description:[String]
+    name: "Pothos",
+    sciname: "pothos",
+    diff: "1",
+    sun: ["Partial Sun" "Full Shade"],
+    tags:["House plant", "vine", "easy"],
+    description:["Its a vine!"]
 
   },
 
