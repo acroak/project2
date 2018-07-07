@@ -7,19 +7,31 @@
   <body>
     <h1>Index/Home Page</h1>
     <nav>
-      <% if (currentUser) {%>
-        <!-- Make a new Admin user -->
-        <a href="/users/new">New User</a>
+
+
         <!-- Log Out -->
         <form action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Logout"/>
         </form>
-      <%} else {%>
+
         <!-- Login -->
         <a href="/sessions/new">Log In</a>
-      <% } %>
+        <!-- Make a new Admin user -->
+        <a href="/users/new">New User</a>
+      
       <a href="/house-plants">House Plants</a>
     </nav>
 
+    <!-- MAIN CONTENT -->
+    <% console.log(Plants); %>
+    <% console.log(Plants[0].name); %>
+      <% for (i = 0; i < Plants.length; i++){ %>
+        <div class="">
+          <a href="/house-plants/<%= Plants[i].id%>">
+            <h2><%= Plants[i].name %></h2>
+            <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
+          </a>
+        </div>
+      <%}%>
   </body>
 </html>

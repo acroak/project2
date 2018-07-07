@@ -6,6 +6,7 @@ const plantSchema = new Schema(
   {
     name: String,
     sciname: String,
+    img: String,
     diff: Number,
     sun: [String],
     tags:[String],

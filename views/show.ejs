@@ -9,10 +9,17 @@
   <p>  this page will display an individual plant image, its name, and information.</p>
   <p>stretch goal is a buy button and a shopping cart?</p>
   <% if (currentUser) {%>
-    <a href="/house-plants/ID/edit">Edit</a>
-    <a href="/house-plants/ID/delete">Delete Plant</a>
+    <a href="/house-plants/<%= Plant.id %>/edit">Edit</a>
+    <a href="/house-plants/<%= Plant.id %>/delete">Delete Plant</a>
   <% } %>
   <a href="/">Home</a>
-  
+  <div class="">
+    <h2><%= Plant.name %></h2>
+    <h3><%= Plant.sciname %></h3>
+    <img src="<%= Plant.img %>" alt="">
+    <p><%= Plant.description %></p>
+
+  </div>
+  <a href="/house-plants/<%= Plant.id %>/edit">Edit</a>
   </body>
 </html>

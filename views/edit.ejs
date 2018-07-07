@@ -9,20 +9,22 @@
     <p>functionality to edit a specific pre-existing plant</p>
       <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p>
 
-      <form class="" action="index.html" method="post">
-        <input type="text" name="name" placeholder="Name"/>
+      <form class="" action="/house-plants/<%=plant.id%>?_method=PUT" method="post">
+        <input type="text" name="name" placeholder="<%= plant.name %>"/>
         <br/>
-        <input type="text" name="sciname" placeholder="Scientific Name"/>
+        <input type="text" name="sciname" placeholder="<%= plant.sciname %>"/>
         <br/>
-        <input type="text" name="diff" placeholder="Difficulty to grow on a scale of 1-5"/>
+        <input type="text" name="img" placeholder="<%= plant.img %>"/>
+        <br>
+        <input type="text" name="diff" placeholder="<%= plant.diff %>"/>
         <br/>
-        <input type="text" name="sun" placeholder="Sunlight"/>
+        <input type="text" name="sun" placeholder="<%= plant.sun %>"/>
         <br/>
-        <input type="text" name="tags" placeholder="Tags"/>
+        <input type="text" name="tags" placeholder="<%= plant.tags %>"/>
         <br/>
-        <textarea placeholder ="Description" name="description" rows="8" cols="80"></textarea>
+        <input type="text" name="description" placeholder="<%= plant.description %>">
         <br/>
-        <input type="submit" name="submit" value="Create"/>
+        <input type="submit" name="submit" value="Update"/>
       </form>
 
 

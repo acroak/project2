@@ -68,11 +68,13 @@ app.post('/house-plants/', (req,res)=>{
 
 });
 
+//====Plant entry by ID number====
 app.get('/house-plants/:id', (req,res)=>{
-  Plants.findByID(req.params.id, (err, foundPlant)=>{
+  Plants.findById(req.params.id, (err, foundPlant)=>{
     res.render('show.ejs',{
-      currentUser: req.session.currentUser,
-      plant: foundPlant
+      Plant: foundPlant,
+      currentUser: req.session.currentUser
+
     });
   })
 });
@@ -86,10 +88,21 @@ app.delete('/house-plants/:id', (req, res) => {
 
 //*************************************EDIT*************************************
 app.get('/house-plants/:id/edit',(req,res)=>{
-  res.render('edit.ejs', {
-    currentUser: req.session.currentUser,
+  Plants.findById({_id: req.params.id}, (err, plant)=>{
+    res.render('edit.ejs', {
+      currentUser: req.session.currentUser,
+      plant: plant
+    });
   });
 });
+//**************************************PUT*************************************
+
+app.put('/house-plants/:id', (req, res)=>{
+    Plants.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
+          res.redirect('/house-plants');
+      });
+});
+
 
 
 // CONNECTIONS
@@ -101,3 +114,5 @@ mongoose.connect(mongoUri, {useNewUrlParser: true});
 mongoose.connection.on('open', ()=>{
   console.log('mongoose!!!!!!!!!!!!!!!!!!!!');
 });
+
+// xxxxxx
