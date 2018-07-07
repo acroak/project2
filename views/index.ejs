@@ -6,5 +6,20 @@
   </head>
   <body>
     <h1>Index/Home Page</h1>
+    <nav>
+      <% if (currentUser) {%>
+        <!-- Make a new Admin user -->
+        <a href="/users/new">New User</a>
+        <!-- Log Out -->
+        <form action="/sessions?_method=DELETE" method="POST">
+              <input type="submit" value="Logout"/>
+        </form>
+      <%} else {%>
+        <!-- Login -->
+        <a href="/sessions/new">Log In</a>
+      <% } %>
+      <a href="/house-plants">House Plants</a>
+    </nav>
+
   </body>
 </html>
