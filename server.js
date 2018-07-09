@@ -13,6 +13,7 @@ const session = require('express-session');
 //Requires Schemas
 const User = require('./models/userModels.js');
 const Plants = require('./models/plantModel.js');
+const seed = require('./models/seed.js');
 
 // MIDDLEWARE
 // body parser middleware
@@ -50,9 +51,13 @@ app.get('/', (req,res)=>{
 
 
 app.get('/house-plants',(req,res)=>{
-  res.render('all_plants.ejs',{
-    currentUser: req.session.currentUser,
-  });
+    Plants.find({tags: {$in: ['houseplant']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
 });
 
 app.get('/house-plants/new',(req,res)=>{
@@ -82,7 +87,7 @@ app.get('/house-plants/:id', (req,res)=>{
 app.delete('/house-plants/:id', (req, res) => {
 	Plants.remove({_id: req.params.id}, (err, plant)=>{
     console.log(plant);
-    res.redirect('/house-plants');
+    res.redirect('/');
   }); //remove the item from the array
 });
 
@@ -103,6 +108,14 @@ app.put('/house-plants/:id', (req, res)=>{
       });
 });
 
+
+//******************************SEED THE DATABASE*******************************
+app.get('/databaseSeed',(req,res)=>{
+  Plants.create(seed, (err, createdPlants)=>{
+    console.log(createdPlants);
+    res.redirect('/');
+  });
+});
 
 
 // CONNECTIONS
