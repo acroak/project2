@@ -9,7 +9,7 @@
     <p>functionality to edit a specific pre-existing plant</p>
       <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p>
       <% console.log(plant.poisonous) %>
-      <form class="" action="/house-plants/<%=plant.id%>?_method=PUT" method="post">
+      <form class="" action="/<%=plant.id%>?_method=PUT" method="post">
         <input type="text" name="name" value="<%= plant.name %>"/>
         <br/>
         <input type="text" name="sciname" value="<%= plant.sciname %>"/>
@@ -33,7 +33,7 @@
         <br/>
         <input type="submit" name="submit" value="Update"/>
       </form>
-      <form action="/house-plants/<%=plant.id%>?_method=DELETE" method="POST">
+      <form action="/<%=plant.id%>?_method=DELETE" method="POST">
           <input type="submit" value="DELETE"/>
       </form>
 

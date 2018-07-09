@@ -9,8 +9,8 @@
   <p>  this page will display an individual plant image, its name, and information.</p>
   <p>stretch goal is a buy button and a shopping cart?</p>
   <% if (currentUser) {%>
-    <a href="/house-plants/<%= Plant.id %>/edit">Edit</a>
-    <form action="/house-plants/<%=Plant.id%>?_method=DELETE" method="POST">
+    <a href="/<%= Plant.id %>/edit">Edit</a>
+    <form action="/<%=Plant.id%>?_method=DELETE" method="POST">
 				<input type="submit" value="DELETE"/>
 		</form>
   <% } %>

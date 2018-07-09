@@ -72,13 +72,13 @@ app.get('/house-plants',(req,res)=>{
 
 });
 //*************************************NEW**************************************
-app.get('/house-plants/new',(req,res)=>{
+app.get('/new',(req,res)=>{
   res.render('new.ejs',{
     currentUser: req.session.currentUser,
   });
 });
 
-app.post('/house-plants/', (req,res)=>{
+app.post('/', (req,res)=>{
   if(req.body.poisonous === 'on'){
         req.body.poisonous = true;
     } else {
@@ -91,7 +91,7 @@ app.post('/house-plants/', (req,res)=>{
 });
 
 //************************************GET BY ID************************************
-app.get('/house-plants/:id', (req,res)=>{
+app.get('/:id', (req,res)=>{
   Plants.findById(req.params.id, (err, foundPlant)=>{
     res.render('show.ejs',{
       Plant: foundPlant,
@@ -101,7 +101,7 @@ app.get('/house-plants/:id', (req,res)=>{
   })
 });
 //************************************DELETE************************************
-app.delete('/house-plants/:id', (req, res) => {
+app.delete('/:id', (req, res) => {
 	Plants.remove({_id: req.params.id}, (err, plant)=>{
     console.log(plant);
     res.redirect('/');
@@ -109,7 +109,7 @@ app.delete('/house-plants/:id', (req, res) => {
 });
 
 //*************************************EDIT*************************************
-app.get('/house-plants/:id/edit',(req,res)=>{
+app.get('/:id/edit',(req,res)=>{
   Plants.findById({_id: req.params.id}, (err, plant)=>{
     res.render('edit.ejs', {
       currentUser: req.session.currentUser,
@@ -119,7 +119,7 @@ app.get('/house-plants/:id/edit',(req,res)=>{
 });
 //**************************************PUT*************************************
 //===put the newly updated information into the model
-app.put('/house-plants/:id', (req, res)=>{
+app.put('/:id', (req, res)=>{
     Plants.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
           res.redirect('/house-plants');
       });
@@ -135,7 +135,7 @@ app.get('/databaseSeed',(req,res)=>{
 });
 //*******************************SEED THE ADMINS********************************
 app.get('/adminSeed',(req,res)=>{
-  seed.forEach((User) => {
+  userSeed.forEach((User) => {
     User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(10));
   });
   User.create(userSeed, (err, createdAdmin)=>{
