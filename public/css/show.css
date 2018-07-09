@@ -1,0 +1,33 @@
+*{
+  /* background-color: pink; */
+}
+
+.container-fluid{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 80%;
+}
+.main-content{
+  text-align: center;
+}
+
+h4{
+  font-style: italic;
+}
+
+img{
+  max-width: 400px;
+}
+span{
+  color: purple;
+  font-weight: 600;
+}
+
+form{
+  display: inline-block;
+}
+.banner{
+  background-color: olivedrab;
+  border-radius: 12px;
+}

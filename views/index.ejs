@@ -3,42 +3,55 @@
   <head>
     <meta charset="utf-8">
     <title>Index</title>
-<!-- *****************TEMP STYLE********************** -->
-    <style media="screen">
-      img{
-        max-width: 300px;
-      }
-    </style>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://pics.clipartpng.com/midle/Leaf_PNG_Clip_Art-1968.png" />
   </head>
   <body>
-    <h1>Index/Home Page</h1>
-    <nav>
-      <% if (currentUser) {%>
-        <!-- Make a new Plant in the Database -->
-        <a href="/plants/new">New Plant</a>
-        <!-- Make a new Admin user -->
-        <a href="/users/new">New User</a>
-        <!-- Log Out -->
-        <form action="/sessions?_method=DELETE" method="POST">
-              <input type="submit" value="Logout"/>
-        </form>
-      <%} else {%>
-        <!-- Login -->
-        <a href="/sessions/new">Log In</a>
+    <div class="container-fluid flex-column justify-content-center">
 
-      <% } %>
-      <a href="/house-plants">House Plants</a>
-      <a href="/herbs">Herbs</a>
-    </nav>
+    <!-- Banner -->
+      <div class="banner">
+        <h1>HOME BANNER</h1>
+      </div>
+
+    <!-- NAVIGATION -->
+        <div class="d-flex flex-row bd-highlight mb-3 nav align-self-center justify-content-center">
+          <nav>
+            <a href="/"><div class="d-inline-flex p-2 bd-highlight">Home</div></a>
+            <a href="/house-plants"><div class="d-inline-flex p-2 bd-highlight">House Plants</div></a>
+            <a href="/herbs"><div class="d-inline-flex p-2 bd-highlight">Herbs</div></a>
+          </nav>
+        </div>
 
     <!-- MAIN CONTENT -->
-      <% for (i = 0; i < Plants.length; i++){ %>
-        <div class="">
-          <a href="/plants/<%= Plants[i].id%>">
-            <h2><%= Plants[i].name %></h2>
-            <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
-          </a>
-        </div>
-      <%}%>
+      <div class="main-content d-flex flex-row flex-wrap justify-content-center">
+        <% for (i = 0; i < Plants.length; i++){ %>
+          <div class="subcontent p-2 bd-highlight">
+            <a href="/plants/<%= Plants[i].id%>">
+              <h2><%= Plants[i].name %></h2>
+              <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
+            </a>
+          </div>
+        <%}%>
+      </div>
+
+
+        <footer>
+          <% if (currentUser) {%>
+            <!-- Make a new Plant in the Database -->
+            <a href="/plants/new">New Plant</a>
+            <!-- Make a new Admin user -->
+            <a href="/users/new">New User</a>
+            <!-- Log Out -->
+            <form action="/sessions?_method=DELETE" method="POST">
+                  <input type="submit" value="Logout"/>
+            </form>
+          <%} %>
+        </footer>
+
+    </div>
   </body>
 </html>

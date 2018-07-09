@@ -1,0 +1,22 @@
+/* *{
+  background-color: pink;
+} */
+.container-fluid{
+
+  text-align: center;
+  max-width: 80%;
+  text-align: center;
+  max-width: 80%;
+}
+.main-content{
+  /* justify-content: center; */
+  text-align: center;
+}
+
+img{
+  max-width: 300px;
+}
+.banner{
+  background-color: olivedrab;
+  border-radius: 12px;
+}

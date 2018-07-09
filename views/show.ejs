@@ -2,32 +2,58 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/show.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://pics.clipartpng.com/midle/Leaf_PNG_Clip_Art-1968.png" />
+
     <title>Show</title>
   </head>
   <body>
-    <h1>Display specific plant</h1>
-  <p>  this page will display an individual plant image, its name, and information.</p>
-  <p>stretch goal is a buy button and a shopping cart?</p>
-  <% if (currentUser) {%>
-    <a href="/plants/<%= Plant.id %>/edit">Edit</a>
-    <form action="/plants/<%=Plant.id%>?_method=DELETE" method="POST">
-				<input type="submit" value="DELETE"/>
-		</form>
-  <% } %>
-  <a href="/">Home</a>
-  <div class="">
-    <h2><%= Plant.name %></h2>
-    <h3><%= Plant.sciname %></h3>
-    <img src="<%= Plant.img %>" alt="">
-    <% console.log(Plant.poisonous) %>
-    <p><% if(Plant.poisonous === true){ %>
-            This plant is POISONOUS to house pets.
-        <% } else { %>
-            This plant is NOT poisonous to house pets.
-        <% } %></p>
-    <p><%= Plant.description %></p>
+    <div class="container-fluid flex-column align-self-center">
+    <!-- BANNER -->
+      <div class="banner">
+        <h1>Display specific plant</h1>
+          <p>  this page will display an individual plant image, its name, and information.</p>
+          <p>stretch goal is a buy button and a shopping cart?</p>
+      </div>
+    <!-- NAVIGATION -->
+      <div class="d-flex flex-row bd-highlight mb-3 nav align-self-center">
+        <nav>
+          <a href="/"><div class="d-inline-flex p-2 bd-highlight">Home</div></a>
+          <a href="/house-plants"><div class="d-inline-flex p-2 bd-highlight">House Plants</div></a>
+          <a href="/herbs"><div class="d-inline-flex p-2 bd-highlight">Herbs</div></a>
+        </nav>
+      </div>
+    <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <h2><%= Plant.name %></h2>
+        <h4>'<%= Plant.sciname %>'</h4>
+        <img src="<%= Plant.img %>" alt="">
+        <% console.log(Plant.poisonous) %>
+        <p><% if(Plant.poisonous === true){ %>
+                This plant is <span>POISONOUS</span> to house pets.
+            <% } else { %>
+                This plant is NOT poisonous to house pets.
+            <% } %></p>
+        <p><%= Plant.description %></p>
+      </div>
+    <!-- FOOTER -->
+      <footer>
+        <% if (currentUser) {%>
+          <a href="/plants/<%= Plant.id %>/edit"><button type="button" name="button">Edit</button></a>
 
-  </div>
+          <form action="/plants/<%=Plant.id%>?_method=DELETE" method="POST">
+              <input type="submit" value="DELETE"/>
+          </form>
+        <% } %>
+      </footer>
+
+
+    </div>
+    <!-- end container-fluid -->
+
 
   </body>
 </html>
