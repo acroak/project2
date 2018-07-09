@@ -10,7 +10,7 @@
     <p>this page will have a tag search option</p>
     <a href="/">Home</a>
     <% for (i=0; i< Plants.length; i++){ %>
-      <a href="/house-plants/<%= Plants[i].id%>">
+      <a href="/plants/<%= Plants[i].id%>">
         <h2><%= Plants[i].name %></h2>
         <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
       </a>

@@ -42,8 +42,12 @@ const sessionController = require('./controllers/sessionControllers.js')
 app.use('/sessions', sessionController);
 
 //************************************GET************************************
+app.get('/',(req,res)=>{
+  res.redirect('/plants')
+});
+
 // GET INDEX
-app.get('/', (req,res)=>{
+app.get('/plants', (req,res)=>{
   Plants.find({}, (err, allPlants)=>{
     res.render('index.ejs',{
       currentUser: req.session.currentUser,
@@ -61,24 +65,24 @@ app.get('/herbs',(req,res)=>{
     })
 
 });
-// // GET HOUSEPLANTS ONLY
-// app.get('/house-plants',(req,res)=>{
-//     Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
-//       res.render('houseplants.ejs',{
-//         currentUser: req.session.currentUser,
-//         Plants: Plants
-//       });
-//     })
-//
-// });
+// GET HOUSEPLANTS ONLY
+app.get('/house-plants',(req,res)=>{
+    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
 //*************************************NEW**************************************
-app.get('/house-plants/new',(req,res)=>{
+app.get('/plants/new',(req,res)=>{
   res.render('new.ejs',{
     currentUser: req.session.currentUser,
   });
 });
 
-app.post('/house-plants/', (req,res)=>{
+app.post('/plants/', (req,res)=>{
   if(req.body.poisonous === 'on'){
         req.body.poisonous = true;
     } else {
@@ -91,7 +95,7 @@ app.post('/house-plants/', (req,res)=>{
 });
 
 //************************************GET BY ID************************************
-app.get('/house-plants/:id', (req,res)=>{
+app.get('/plants/:id', (req,res)=>{
   Plants.findById(req.params.id, (err, foundPlant)=>{
     res.render('show.ejs',{
       Plant: foundPlant,
@@ -101,7 +105,7 @@ app.get('/house-plants/:id', (req,res)=>{
   })
 });
 //************************************DELETE************************************
-app.delete('/house-plants/:id', (req, res) => {
+app.delete('/plants/:id', (req, res) => {
 	Plants.remove({_id: req.params.id}, (err, plant)=>{
     console.log(plant);
     res.redirect('/');
@@ -109,7 +113,7 @@ app.delete('/house-plants/:id', (req, res) => {
 });
 
 //*************************************EDIT*************************************
-app.get('/house-plants/:id/edit',(req,res)=>{
+app.get('/plants/:id/edit',(req,res)=>{
   Plants.findById({_id: req.params.id}, (err, plant)=>{
     res.render('edit.ejs', {
       currentUser: req.session.currentUser,
@@ -119,7 +123,7 @@ app.get('/house-plants/:id/edit',(req,res)=>{
 });
 //**************************************PUT*************************************
 //===put the newly updated information into the model
-app.put('/house-plants/:id', (req, res)=>{
+app.put('/plants/:id', (req, res)=>{
     Plants.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
           res.redirect('/');
       });

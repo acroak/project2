@@ -9,7 +9,7 @@
     <p>functionality to edit a specific pre-existing plant</p>
       <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p>
 
-      <form class="" action="/house-plants/<%=plant.id%>?_method=PUT" method="post">
+      <form class="" action="/plants/<%=plant.id%>?_method=PUT" method="post">
         <input type="text" name="name" value="<%= plant.name %>"/>
         <br/>
         <input type="text" name="sciname" value="<%= plant.sciname %>"/>
