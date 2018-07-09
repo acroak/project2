@@ -96,7 +96,7 @@ app.get('/house-plants/:id/edit',(req,res)=>{
   });
 });
 //**************************************PUT*************************************
-
+//===put the newly updated information into the model
 app.put('/house-plants/:id', (req, res)=>{
     Plants.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
           res.redirect('/house-plants');
