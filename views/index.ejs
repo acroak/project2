@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Index</title>
+<!-- *****************TEMP STYLE********************** -->
+    <style media="screen">
+      img{
+        max-width: 300px;
+      }
+    </style>
   </head>
   <body>
     <h1>Index/Home Page</h1>
@@ -20,11 +26,10 @@
         <a href="/users/new">New User</a>
       <% } %>
       <a href="/house-plants">House Plants</a>
+      <a href="/herbs">Herbs</a>
     </nav>
 
     <!-- MAIN CONTENT -->
-    <% console.log(Plants); %>
-    <% console.log(Plants[0].name); %>
       <% for (i = 0; i < Plants.length; i++){ %>
         <div class="">
           <a href="/house-plants/<%= Plants[i].id%>">

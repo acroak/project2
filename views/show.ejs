@@ -19,6 +19,12 @@
     <h2><%= Plant.name %></h2>
     <h3><%= Plant.sciname %></h3>
     <img src="<%= Plant.img %>" alt="">
+    <% console.log(Plant.poisonous) %>
+    <p><% if(Plant.poisonous === true){ %>
+            This plant is POISONOUS to house pets.
+        <% } else { %>
+            This plant is NOT poisonous to house pets.
+        <% } %></p>
     <p><%= Plant.description %></p>
 
   </div>

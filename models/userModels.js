@@ -6,7 +6,8 @@ const userSchema = Schema(
   {
   username: {type: String, unique: true},
   password: String,
-  messages: [String]
+  messages: [String],
+  class: String
   }
 
 );

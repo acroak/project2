@@ -10,10 +10,13 @@ const methodOverride = require('method-override');
 
 const session = require('express-session');
 
+const bcrypt = require('bcrypt');
+
 //Requires Schemas
 const User = require('./models/userModels.js');
 const Plants = require('./models/plantModel.js');
 const seed = require('./models/seed.js');
+const userSeed = require('./models/userSeed.js');
 
 // MIDDLEWARE
 // body parser middleware
@@ -38,7 +41,7 @@ app.use('/users', userController);
 const sessionController = require('./controllers/sessionControllers.js')
 app.use('/sessions', sessionController);
 
-
+//************************************GET************************************
 // GET INDEX
 app.get('/', (req,res)=>{
   Plants.find({}, (err, allPlants)=>{
@@ -48,10 +51,19 @@ app.get('/', (req,res)=>{
     });
   })
 });
+// GET HERBS ONLY
+app.get('/herbs',(req,res)=>{
+    Plants.find({tags: {$in: ['herb']}}, (err, Plants)=>{
+      res.render('herbs.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
 
-
+});
+// GET HOUSEPLANTS ONLY
 app.get('/house-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['houseplant']}}, (err, Plants)=>{
+    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -59,7 +71,7 @@ app.get('/house-plants',(req,res)=>{
     })
 
 });
-
+//*************************************NEW**************************************
 app.get('/house-plants/new',(req,res)=>{
   res.render('new.ejs',{
     currentUser: req.session.currentUser,
@@ -67,13 +79,18 @@ app.get('/house-plants/new',(req,res)=>{
 });
 
 app.post('/house-plants/', (req,res)=>{
+  if(req.body.poisonous === 'on'){
+        req.body.poisonous = true;
+    } else {
+        req.body.poisonous = false;
+    }
   Plants.create(req.body, (error, createdPlant)=>{
     res.redirect('/');
   });
 
 });
 
-//====Plant entry by ID number====
+//************************************GET BY ID************************************
 app.get('/house-plants/:id', (req,res)=>{
   Plants.findById(req.params.id, (err, foundPlant)=>{
     res.render('show.ejs',{
@@ -116,7 +133,16 @@ app.get('/databaseSeed',(req,res)=>{
     res.redirect('/');
   });
 });
-
+//*******************************SEED THE ADMINS********************************
+app.get('/adminSeed',(req,res)=>{
+  seed.forEach((User) => {
+    User.password = bcrypt.hashSync(User.password, bcrypt.genSaltSync(10));
+  });
+  User.create(userSeed, (err, createdAdmin)=>{
+    console.log(createdAdmin);
+    res.redirect('/');
+  });
+});
 
 // CONNECTIONS
 app.listen(port, ()=>{

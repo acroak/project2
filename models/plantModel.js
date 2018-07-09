@@ -10,6 +10,7 @@ const plantSchema = new Schema(
     diff: Number,
     sun: [String],
     tags:[String],
+    poisonous: Boolean,
     description:[String]
 
   }

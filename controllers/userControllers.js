@@ -10,10 +10,13 @@ router.get('/new', (req,res)=>{
 
 //encrpt password, redirect home
 router.post('/', (req, res)=>{
-    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-    console.log(req.body.password);
-    User.create(req.body, (err, createdUser)=>{
-        res.redirect('/');
+    User.findOne({ username: req.body.username },(err, foundUser) => {
+        if( bcrypt.compareSync(req.body.password, foundUser.password) ){
+            req.session.currentUser = foundUser;
+            res.redirect('/');
+        } else {
+            res.send('wrong password');
+        }
     });
 });
 module.exports = router;
