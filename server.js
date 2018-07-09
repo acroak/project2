@@ -61,24 +61,24 @@ app.get('/herbs',(req,res)=>{
     })
 
 });
-// GET HOUSEPLANTS ONLY
-app.get('/house-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
+// // GET HOUSEPLANTS ONLY
+// app.get('/house-plants',(req,res)=>{
+//     Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
+//       res.render('houseplants.ejs',{
+//         currentUser: req.session.currentUser,
+//         Plants: Plants
+//       });
+//     })
+//
+// });
 //*************************************NEW**************************************
-app.get('/new',(req,res)=>{
+app.get('/house-plants/new',(req,res)=>{
   res.render('new.ejs',{
     currentUser: req.session.currentUser,
   });
 });
 
-app.post('/', (req,res)=>{
+app.post('/house-plants/', (req,res)=>{
   if(req.body.poisonous === 'on'){
         req.body.poisonous = true;
     } else {
@@ -91,7 +91,7 @@ app.post('/', (req,res)=>{
 });
 
 //************************************GET BY ID************************************
-app.get('/:id', (req,res)=>{
+app.get('/house-plants/:id', (req,res)=>{
   Plants.findById(req.params.id, (err, foundPlant)=>{
     res.render('show.ejs',{
       Plant: foundPlant,
@@ -101,7 +101,7 @@ app.get('/:id', (req,res)=>{
   })
 });
 //************************************DELETE************************************
-app.delete('/:id', (req, res) => {
+app.delete('/house-plants/:id', (req, res) => {
 	Plants.remove({_id: req.params.id}, (err, plant)=>{
     console.log(plant);
     res.redirect('/');
@@ -109,7 +109,7 @@ app.delete('/:id', (req, res) => {
 });
 
 //*************************************EDIT*************************************
-app.get('/:id/edit',(req,res)=>{
+app.get('/house-plants/:id/edit',(req,res)=>{
   Plants.findById({_id: req.params.id}, (err, plant)=>{
     res.render('edit.ejs', {
       currentUser: req.session.currentUser,
@@ -119,9 +119,9 @@ app.get('/:id/edit',(req,res)=>{
 });
 //**************************************PUT*************************************
 //===put the newly updated information into the model
-app.put('/:id', (req, res)=>{
-    Plants.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedModel)=>{
-          res.redirect('/house-plants');
+app.put('/house-plants/:id', (req, res)=>{
+    Plants.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
+          res.redirect('/');
       });
 });
 

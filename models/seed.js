@@ -2,7 +2,7 @@ let seedPlants = [
   {
     name: "Golden Pothos",
     sciname: "Scindapsus aureus",
-    img:"https://images-na.ssl-images-amazon.com/images/I/51i6xDKSQKL._SL500_AC_SS350_.jpg",
+    img:"https://thewrightgardner.com/wp-content/uploads/2017/10/PothosJade_EUCYL_G.jpg",
     diff: "1",
     sun: ["partial sun", "full shade"],
     tags:["house plant", "vine", "easy"],

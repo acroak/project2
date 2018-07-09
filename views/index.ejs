@@ -14,7 +14,6 @@
     <h1>Index/Home Page</h1>
     <nav>
       <% if (currentUser) {%>
-
         <!-- Log Out -->
         <form action="/sessions?_method=DELETE" method="POST">
               <input type="submit" value="Logout"/>
@@ -32,7 +31,7 @@
     <!-- MAIN CONTENT -->
       <% for (i = 0; i < Plants.length; i++){ %>
         <div class="">
-          <a href="/<%= Plants[i].id%>">
+          <a href="/house-plants/<%= Plants[i].id%>">
             <h2><%= Plants[i].name %></h2>
             <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
           </a>
