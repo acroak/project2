@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
     <!-- favicon -->
     <link rel="shortcut icon" href="https://pics.clipartpng.com/midle/Leaf_PNG_Clip_Art-1968.png" />
 
@@ -12,10 +13,23 @@
     <title>New Plant</title>
   </head>
   <body>
-    <h1>Add a new plant</h1>
+    <!-- <h1>Add a new plant</h1>
     <p>this page will allow you to add a new plant, if you are logged in as an administrator</p>
-    <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p>
-
+    <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p> -->
+    <div class="container-fluid">
+      <!-- Banner -->
+        <div class="banner">
+          <h1>New Plant</h1>
+        </div>
+      <!-- NAVIGATION -->
+          <div class="d-flex flex-row bd-highlight mb-3 nav align-self-center justify-content-center">
+            <nav>
+              <a href="/"><div class="d-inline-flex p-2 bd-highlight">Home</div></a>
+              <a href="/house-plants"><div class="d-inline-flex p-2 bd-highlight">House Plants</div></a>
+              <a href="/herbs"><div class="d-inline-flex p-2 bd-highlight">Herbs</div></a>
+            
+            </nav>
+          </div>
     <form class="" action="/plants" method="post">
       <input type="text" name="name" placeholder="Name"/>
       <br/>
@@ -35,6 +49,6 @@
       <br/>
       <input type="submit" name="submit" value="Create"/>
     </form>
-
+  </div>
   </body>
 </html>

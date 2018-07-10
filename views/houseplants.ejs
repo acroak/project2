@@ -4,21 +4,64 @@
     <meta charset="utf-8">
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
     <!-- favicon -->
     <link rel="shortcut icon" href="https://pics.clipartpng.com/midle/Leaf_PNG_Clip_Art-1968.png" />
 
-    <title>House Plants</title>
+    <title>Plants</title>
   </head>
   <body>
-    <h1>House Plants </h1>
+    <!-- <h1>House Plants </h1>
     <p>this page will display all the plants as images/names with links to their individula show pages</p>
-    <p>this page will have a tag search option</p>
-    <a href="/">Home</a>
-    <% for (i=0; i< Plants.length; i++){ %>
-      <a href="/plants/<%= Plants[i].id%>">
-        <h2><%= Plants[i].name %></h2>
-        <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
-      </a>
-    <% } %>
+    <p>this page will have a tag search option</p> -->
+
+
+    <div class="container-fluid flex-column justify-content-center">
+
+    <!-- Banner -->
+      <div class="banner">
+        <h1>PLANTS</h1>
+      </div>
+
+    <!-- NAVIGATION -->
+        <div class="d-flex flex-row bd-highlight mb-3 nav align-self-center justify-content-center">
+          <nav>
+            <a href="/"><div class="d-inline-flex p-2 bd-highlight">Home</div></a>
+            <a href="/house-plants"><div class="d-inline-flex p-2 bd-highlight">House Plants</div></a>
+            <a href="/herbs"><div class="d-inline-flex p-2 bd-highlight">Herbs</div></a>
+
+          </nav>
+        </div>
+
+    <!-- MAIN CONTENT -->
+      <div class="main-content d-flex flex-row flex-wrap justify-content-center">
+
+        <% for (i = 0; i < Plants.length; i++){ %>
+          <div class="subcontent p-2 bd-highlight">
+            <a href="/plants/<%= Plants[i].id%>">
+              <h2><%= Plants[i].name %></h2>
+              <img src="<%= Plants[i].img %>" alt="<%= Plants[i].name %>">
+            </a>
+          </div>
+        <%}%>
+      </div>
+
+
+        <footer>
+          <% if (currentUser) {%>
+            <!-- Make a new Plant in the Database -->
+            <a href="/plants/new">New Plant</a>
+            <!-- Make a new Admin user -->
+            <a href="/users/new">New User</a>
+            <!-- Log Out -->
+            <form action="/sessions?_method=DELETE" method="POST">
+                  <input type="submit" value="Logout"/>
+            </form>
+          <%} else { %>
+            <a href="/sessions/new"><div class="d-inline-flex p-2 bd-highlight">Log In</div></a>
+          <% } %>
+        </footer>
+
+    </div>
   </body>
 </html>

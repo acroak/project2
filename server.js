@@ -57,17 +57,80 @@ app.get('/plants', (req,res)=>{
 });
 // GET HERBS ONLY
 app.get('/herbs',(req,res)=>{
-    Plants.find({tags: {$in: ['herb']}}, (err, Plants)=>{
-      res.render('herbs.ejs',{
+  Plants.find({tags: {$in: ['herb']}}, (err, Plants)=>{
+    res.render('herbs.ejs',{
+      currentUser: req.session.currentUser,
+      Plants: Plants
+    });
+  })
+});
+// GET HOUSEPLANTS ONLY
+app.get('/house-plants',(req,res)=>{
+    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
     })
 
 });
-// GET HOUSEPLANTS ONLY
-app.get('/house-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
+
+//full sun
+app.get('/full-sun',(req,res)=>{
+    Plants.find({sun: {$in: ['full sun']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
+
+//partial sun/Shade
+app.get('/partial',(req,res)=>{
+    Plants.find({sun: {$in: ['partial sun','partial shade']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
+
+//full Shade
+app.get('/full-shade',(req,res)=>{
+    Plants.find({sun: {$in: ['full shade']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
+
+//EASY TO GROW
+app.get('/easy-plants',(req,res)=>{
+    Plants.find({tags: {$in: ['easy']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
+//MODERATE TO GROW
+app.get('/moderate-plants',(req,res)=>{
+    Plants.find({tags: {$in: ['moderate']}}, (err, Plants)=>{
+      res.render('houseplants.ejs',{
+        currentUser: req.session.currentUser,
+        Plants: Plants
+      });
+    })
+
+});
+//HARD TO GROW
+app.get('/hard-plants',(req,res)=>{
+    Plants.find({tags: {$in: ['hard']}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants

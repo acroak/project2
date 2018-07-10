@@ -184,7 +184,7 @@ let seedPlants = [
     img:"https://thumbs.dreamstime.com/b/chamomile-flowers-pot-isolated-white-51613842.jpg",
     diff: 5,
     sun: ["full sun", "partial shade" ],
-    tags:["perennial", "herb", "tea", "difficult"],
+    tags:["perennial", "herb", "tea", "hard"],
     poisonous: false,
     description:["Chamomile is a perennial herb that is typically grown for its edible qualities, although it does have ornamental merits as well. It produces white flowers which are harvested from mid spring to mid summer. The flowers have an earthy taste."]
   },
@@ -244,7 +244,7 @@ let seedPlants = [
     img:"https://www.pavilionbroadway.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/i/sia_lavender_pot_purple_height_70cm.jpg",
     diff: 5,
     sun: ["full" ],
-    tags:["perennial", "herb", "tea"],
+    tags:["perennial", "herb", "tea", "hard"],
     poisonous: false,
     description:["Hidcote Lavender has masses of beautiful spikes of fragrant purple flowers rising above the foliage from early to late summer, which are most effective when planted in groupings. The flowers are excellent for cutting. It has attractive grayish green foliage. The fragrant needles are highly ornamental and turn coppery-bronze in fall. The fruit is not ornamentally significant."]
   }
