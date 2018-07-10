@@ -189,7 +189,7 @@ let seedPlants = [
     description:["Chamomile is a perennial herb that is typically grown for its edible qualities, although it does have ornamental merits as well. It produces white flowers which are harvested from mid spring to mid summer. The flowers have an earthy taste."]
   },
   {
-    name: "Mojito",
+    name: "Mojito Mint",
     sciname: "Mentha x villosa 'Mojito'",
     img:"https://www.jungseed.com/PIF/12266/JungSeed.jpg",
     diff: 4,

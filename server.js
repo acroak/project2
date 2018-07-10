@@ -74,7 +74,6 @@ app.get('/house-plants',(req,res)=>{
     })
 
 });
-
 //full sun
 app.get('/full-sun',(req,res)=>{
     Plants.find({sun: {$in: ['full sun']}}, (err, Plants)=>{
@@ -85,7 +84,6 @@ app.get('/full-sun',(req,res)=>{
     })
 
 });
-
 //partial sun/Shade
 app.get('/partial',(req,res)=>{
     Plants.find({sun: {$in: ['partial sun','partial shade']}}, (err, Plants)=>{
@@ -96,7 +94,6 @@ app.get('/partial',(req,res)=>{
     })
 
 });
-
 //full Shade
 app.get('/full-shade',(req,res)=>{
     Plants.find({sun: {$in: ['full shade']}}, (err, Plants)=>{
@@ -107,7 +104,6 @@ app.get('/full-shade',(req,res)=>{
     })
 
 });
-
 //EASY TO GROW
 app.get('/easy-plants',(req,res)=>{
     Plants.find({tags: {$in: ['easy']}}, (err, Plants)=>{

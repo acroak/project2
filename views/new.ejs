@@ -3,9 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/index.css">
+    <% include ../partials/head_index.ejs %>
     <!-- favicon -->
     <link rel="shortcut icon" href="https://pics.clipartpng.com/midle/Leaf_PNG_Clip_Art-1968.png" />
 
@@ -18,18 +16,11 @@
     <p>contact karolin or jerrica about how to make sure folks can't just type in the address and stumble upon this functionality</p> -->
     <div class="container-fluid">
       <!-- Banner -->
-        <div class="banner">
-          <h1>New Plant</h1>
-        </div>
+        <% include ../partials/banner.ejs %>
       <!-- NAVIGATION -->
-          <div class="d-flex flex-row bd-highlight mb-3 nav align-self-center justify-content-center">
-            <nav>
-              <a href="/"><div class="d-inline-flex p-2 bd-highlight">Home</div></a>
-              <a href="/house-plants"><div class="d-inline-flex p-2 bd-highlight">House Plants</div></a>
-              <a href="/herbs"><div class="d-inline-flex p-2 bd-highlight">Herbs</div></a>
-            
-            </nav>
-          </div>
+        <% include ../partials/nav.ejs %>
+
+      <!-- MAIN CONTENT -->
     <form class="" action="/plants" method="post">
       <input type="text" name="name" placeholder="Name"/>
       <br/>
@@ -50,5 +41,8 @@
       <input type="submit" name="submit" value="Create"/>
     </form>
   </div>
+  <!-- FOOTER -->
+    <% include ../partials/footer.ejs %>
+
   </body>
 </html>

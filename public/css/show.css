@@ -1,7 +1,12 @@
 *{
-  /* background-color: pink; */
+  color: #444;
 }
-
+a, h2{
+  color: #444;
+}
+a:hover{
+  color: rgb(0, 123, 255);
+}
 .container-fluid{
   display: flex;
   flex-direction: column;

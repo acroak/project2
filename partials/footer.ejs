@@ -1,0 +1,16 @@
+<footer>
+  <% if (currentUser) {%>
+    <!-- Make a new Plant in the Database -->
+    <a href="/plants/new">New Plant</a>
+    <!-- Make a new Admin user -->
+    <a href="/users/new">New User</a>
+    <!-- Log Out -->
+    <form action="/sessions?_method=DELETE" method="POST">
+          <input class= "logout" type="submit" value="Logout"/>
+    </form>
+  <%} else { %>
+    <a href="/sessions/new"><div class="d-inline-flex p-2 bd-highlight">Log In</div></a>
+  <% } %>
+    <input type="email" name="" placeholder="sign up for newsletter">
+    <input type="submit" name="" value="Subscribe">
+</footer>
