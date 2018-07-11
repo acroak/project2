@@ -13,6 +13,9 @@
   <li>EJS</li>
   <li>MVC File Structure</li>
   <li>7 RESTful routes and full CRUD.</li>
+  <li>Partials</li>
+  <li>Bootstrap</li>
+  <li>Sign in/ Bcrypt encryption</li>
 </ul>
 <hr/>
 <br/>

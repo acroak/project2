@@ -5,6 +5,14 @@
   margin: auto;
   max-width: 100%;
 }
+.a{
+  text-decoration: none;
+  color: #444;
+}
+.a:hover{
+  text-decoration: none;
+  color: #444;
+}
 @media (max-width: 576px) {
   .banner{
     font-size: 5em;
