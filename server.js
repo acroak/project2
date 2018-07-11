@@ -1,6 +1,6 @@
+//**********************************Dependencies********************************
 const express = require('express');
 const app = express();
-
 const port = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
@@ -12,23 +12,22 @@ const session = require('express-session');
 
 const bcrypt = require('bcrypt');
 
-// const searchBar = require('./models/app.js');
+const db = mongoose.connection
 
-//Requires Schemas
-const User = require('./models/userModels.js');
+
+
+//***************************Schema Dependencies********************************
 const Plants = require('./models/plantModel.js');
 const seed = require('./models/seed.js');
+
+const User = require('./models/userModels.js');
 const userSeed = require('./models/userSeed.js');
 
-// MIDDLEWARE
-// body parser middleware
+//*********************************Middleware***********************************
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// static files middleware
 app.use(express.static('public'))
-//method override MIDDLEWARE
 app.use(methodOverride('_method'));
-//Sessions MIDDLEWARE
 app.use(session({
   secret: "feedmeseymour", //some random string
   resave: false,
@@ -36,7 +35,10 @@ app.use(session({
 }));
 
 
-//CONTROLLERS
+//*********************************Controllers**********************************
+const plantsController = require("./controllers/plants.js");
+app.use("/plants", plantsController);
+
 const userController = require('./controllers/userControllers.js')
 app.use('/users', userController);
 
@@ -44,164 +46,22 @@ const sessionController = require('./controllers/sessionControllers.js')
 app.use('/sessions', sessionController);
 
 
-
-
 //************************************GET************************************
+// REDIRECT TO INDEX
 app.get('/',(req,res)=>{
   res.redirect('/plants')
 });
 
 // GET INDEX
 app.get('/plants', (req,res)=>{
-  Plants.find({}, null, {sort: {name: 1}}, (err, allPlants)=>{
+  Plants.find({},(err, allPlants)=>{
     res.render('index.ejs',{
       currentUser: req.session.currentUser,
       Plants: allPlants
-    });
-  })
-});
-
-
-
-//====================================ALPHABETICALLY==============
-//const alphaPlants = (Plants.find({}, null, {sort: {name: 1}})
-//console.log(alphaPlants);
-// GET HOUSEPLANTS ONLY
-app.get('/house-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['house plant']}}, null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-  // })//ALPHA
- });
-
- // GET HERBS ONLY
- app.get('/herbs',(req,res)=>{
-   Plants.find({tags: {$in: ['herb']}}, null, {sort: {name: 1}}, (err, Plants)=>{
-     res.render('herbs.ejs',{
-       currentUser: req.session.currentUser,
-       Plants: Plants
-     });
-   })
- });
-
-
-//full sun
-app.get('/full-sun',(req,res)=>{
-    Plants.find({sun: {$in: ['full sun']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//partial sun/Shade
-app.get('/partial',(req,res)=>{
-    Plants.find({sun: {$in: ['partial sun','partial shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//full Shade
-app.get('/full-shade',(req,res)=>{
-    Plants.find({sun: {$in: ['full shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//EASY TO GROW
-app.get('/easy-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['easy']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//MODERATE TO GROW
-app.get('/moderate-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['moderate']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//HARD TO GROW
-app.get('/hard-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['hard']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
-        currentUser: req.session.currentUser,
-        Plants: Plants
-      });
-    })
-
-});
-//*************************************NEW**************************************
-app.get('/plants/new',(req,res)=>{
-  res.render('new.ejs',{
-    currentUser: req.session.currentUser,
-  });
-});
-
-app.post('/plants/', (req,res)=>{
-  if(req.body.poisonous === 'on'){
-        req.body.poisonous = true;
-    } else {
-        req.body.poisonous = false;
-    }
-  Plants.create(req.body, (error, createdPlant)=>{
-    res.redirect('/');
-  });
-
-});
-
-//************************************GET BY ID************************************
-app.get('/plants/:id', (req,res)=>{
-  Plants.findById(req.params.id, (err, foundPlant)=>{
-    res.render('show.ejs',{
-      Plant: foundPlant,
-      currentUser: req.session.currentUser
 
     });
-  })
+  }).sort({name: 1})
 });
-//************************************DELETE************************************
-app.delete('/plants/:id', (req, res) => {
-	Plants.remove({_id: req.params.id}, (err, plant)=>{
-    console.log(plant);
-    res.redirect('/');
-  }); //remove the item from the array
-});
-
-//*************************************EDIT*************************************
-app.get('/plants/:id/edit',(req,res)=>{
-  Plants.findById({_id: req.params.id}, (err, plant)=>{
-    res.render('edit.ejs', {
-      currentUser: req.session.currentUser,
-      plant: plant
-    });
-  });
-});
-//**************************************PUT*************************************
-//===put the newly updated information into the model
-app.put('/plants/:id', (req, res)=>{
-    Plants.findByIdAndUpdate(req.params.id, req.body,  (err, updatedModel)=>{
-          res.redirect('/');
-      });
-});
-
 
 //******************************SEED THE DATABASE*******************************
 app.get('/databaseSeed',(req,res)=>{
@@ -230,5 +90,13 @@ mongoose.connect(mongoUri, {useNewUrlParser: true});
 mongoose.connection.on('open', ()=>{
   console.log('mongoose!!!!!!!!!!!!!!!!!!!!');
 });
+//*******************************SEARCH BAR********************************
+
+// db.plants.createIndex({
+//     title: 'text',
+//     description: 'text',
+//     sun: 'text',
+//     tags: 'text'
+// });
 
 // xxxxxx
