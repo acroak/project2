@@ -28,12 +28,22 @@
         <img src="<%= Plant.img %>" alt="">
 
         <div class="about">
-          <p><% if(Plant.poisonous === true){ %>
+          <p class="poison"><% if(Plant.poisonous === true){ %>
                   This plant is <span>POISONOUS</span> to house pets.
               <% } else { %>
                   This plant is NOT poisonous to house pets.
               <% } %></p>
           <p class="about"><%= Plant.description %></p>
+          <br>
+          <% if (currentUser){ %>
+            <div class="edits">
+              <a href="/plants/<%= Plant.id %>/edit"><button type="button" name="button">Edit</button></a>
+              <form action="/plants/<%=Plant.id%>?_method=DELETE" method="POST">
+                  <input type="submit" value="DELETE"/>
+              </form>
+            </div>
+          <% } %>
+
           <br>
           <!-- FOOTER -->
           <% include ../partials/footer.ejs %>
