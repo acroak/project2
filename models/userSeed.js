@@ -5,11 +5,6 @@ let adminSeed = [
     class: "admin"
   },
   {
-    username: "GreenGoddess",
-    password: "smoothies",
-    class: "admin"
-  },
-  {
     username: "Andi",
     password: "gatekeeper",
     class: "admin"
