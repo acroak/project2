@@ -68,6 +68,7 @@ button:focus {outline:0;}
   }
   .dropbtn{
     font-size: .5em;
+      padding: 5px;
   }
   .dropdown-content {
       min-width: 50px;

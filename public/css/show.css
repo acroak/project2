@@ -19,7 +19,9 @@ a:hover{
   text-align: center;
   flex-direction: row;
 }
-
+.navHR{
+  border: 1px solid olivedrab;
+}
 h4{
   font-style: italic;
 }

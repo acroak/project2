@@ -5,3 +5,8 @@
   margin: auto;
   max-width: 100%;
 }
+@media (max-width: 576px) {
+  .banner{
+    font-size: 5em;
+  }
+}

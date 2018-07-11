@@ -13,6 +13,7 @@
         <% include ../partials/banner.ejs %>
       <!-- NAVIGATION -->
         <% include ../partials/nav.ejs %>
+        <hr class="navHR">
 
       <form class="" action="/plants/<%=plant.id%>?_method=PUT" method="post">
         <input type="text" name="name" value="<%= plant.name %>"/>
