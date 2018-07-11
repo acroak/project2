@@ -7,7 +7,7 @@ const seed = require('../models/seed.js');
 // GET HOUSEPLANTS ONLY
 router.get('/house-plants',(req,res)=>{
     Plants.find({tags: {$in: ['house plant']}}, null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -17,7 +17,7 @@ router.get('/house-plants',(req,res)=>{
  // GET HERBS ONLY
  router.get('/herbs',(req,res)=>{
    Plants.find({tags: {$in: ['herb']}}, null, {sort: {name: 1}}, (err, Plants)=>{
-     res.render('herbs.ejs',{
+     res.render('index.ejs',{
        currentUser: req.session.currentUser,
        Plants: Plants
      });
@@ -28,7 +28,7 @@ router.get('/house-plants',(req,res)=>{
 //full sun
 router.get('/full-sun',(req,res)=>{
     Plants.find({sun: {$in: ['full sun']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -37,7 +37,7 @@ router.get('/full-sun',(req,res)=>{
 //partial sun/Shade
 router.get('/partial',(req,res)=>{
     Plants.find({sun: {$in: ['partial sun','partial shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -46,7 +46,7 @@ router.get('/partial',(req,res)=>{
 //full Shade
 router.get('/full-shade',(req,res)=>{
     Plants.find({sun: {$in: ['full shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -55,7 +55,7 @@ router.get('/full-shade',(req,res)=>{
 //EASY TO GROW
 router.get('/easy-plants',(req,res)=>{
     Plants.find({tags: {$in: ['easy']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -65,7 +65,7 @@ router.get('/easy-plants',(req,res)=>{
 //MODERATE TO GROW
 router.get('/moderate-plants',(req,res)=>{
     Plants.find({tags: {$in: ['moderate']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
@@ -75,7 +75,7 @@ router.get('/moderate-plants',(req,res)=>{
 //HARD TO GROW
 router.get('/hard-plants',(req,res)=>{
     Plants.find({tags: {$in: ['hard']}},null, {sort: {name: 1}}, (err, Plants)=>{
-      res.render('houseplants.ejs',{
+      res.render('index.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });

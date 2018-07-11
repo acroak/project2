@@ -12,10 +12,6 @@ const session = require('express-session');
 
 const bcrypt = require('bcrypt');
 
-const db = mongoose.connection
-
-
-
 //***************************Schema Dependencies********************************
 const Plants = require('./models/plantModel.js');
 const seed = require('./models/seed.js');
@@ -34,7 +30,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-
 //*********************************Controllers**********************************
 const plantsController = require("./controllers/plants.js");
 app.use("/plants", plantsController);
@@ -44,7 +39,6 @@ app.use('/users', userController);
 
 const sessionController = require('./controllers/sessionControllers.js')
 app.use('/sessions', sessionController);
-
 
 //************************************GET************************************
 // REDIRECT TO INDEX
@@ -70,6 +64,7 @@ app.get('/databaseSeed',(req,res)=>{
     res.redirect('/');
   });
 });
+
 //*******************************SEED THE ADMINS********************************
 app.get('/adminSeed',(req,res)=>{
   userSeed.forEach((User) => {
@@ -90,13 +85,3 @@ mongoose.connect(mongoUri, {useNewUrlParser: true});
 mongoose.connection.on('open', ()=>{
   console.log('mongoose!!!!!!!!!!!!!!!!!!!!');
 });
-//*******************************SEARCH BAR********************************
-
-// db.plants.createIndex({
-//     title: 'text',
-//     description: 'text',
-//     sun: 'text',
-//     tags: 'text'
-// });
-
-// xxxxxx

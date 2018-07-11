@@ -61,3 +61,16 @@ button:focus {outline:0;}
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
+@media (max-width: 576px) {
+
+  *{
+    font-size: .5em;
+  }
+  .dropbtn{
+    font-size: .5em;
+  }
+  .dropdown-content {
+      min-width: 50px;
+  }
+
+}

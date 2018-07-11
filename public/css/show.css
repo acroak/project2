@@ -1,6 +1,6 @@
 *{
   color: #444;
-  font-family: 'Arimo', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 a, h2{
   color: #444;
@@ -16,6 +16,7 @@ a:hover{
 }
 .main-content{
   text-align: center;
+  flex-direction: row;
 }
 
 h4{
@@ -33,7 +34,11 @@ span{
 form{
   display: inline-block;
 }
-.banner{
-  background-color: olivedrab;
+
+.about{
+  margin: auto;
+  max-width: 70%;
+  text-align: center;
+  color: #444
 
 }

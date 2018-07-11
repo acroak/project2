@@ -1,10 +1,12 @@
 *{
   color: #444;
-  font-family: 'Arimo', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
+
 a:hover{
   color: rgb(0, 123, 255);
 }
+
 h2{
   color: #444;
 }
@@ -15,6 +17,7 @@ h2{
   text-align: center;
   max-width: 80%;
 }
+
 .main-content{
   text-align: center;
 }
@@ -27,23 +30,37 @@ img{
   align-content: center;
 }
 
-.banner{
-  background-color: olivedrab;
-
-}
 .logout{
   display: inline-block;
 }
+
 footer{
   padding: 30px;
 }
+
 .subcontent{
   max-width: 350px;
-
 }
+
 .subcontent:hover{
   background-color: white;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+
+}
+
+@media (max-width: 576px) {
+  img{
+    max-width: 200px;
+  }
+  .subcontent{
+    max-width: 250px;
+  }
+  *{
+    font-size: .5em;
+  }
+  button{
+    font-size: .5em;
+  }
 }

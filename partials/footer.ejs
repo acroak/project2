@@ -1,17 +1,66 @@
-<footer>
-  <% if (currentUser) {%>
-    <!-- Make a new Plant in the Database -->
-    <a href="/plants/new">New Plant</a>
-    <!-- Make a new Admin user -->
-    <a href="/users/new">New User</a>
-    <!-- Log Out -->
-    <form action="/sessions?_method=DELETE" method="POST">
-          <input class= "logout" type="submit" value="Logout"/>
-    </form>
-  <%} else { %>
-    <a href="/sessions/new"><div class="d-inline-flex p-2 bd-highlight">Log In</div></a>
-    <input type="email" name="" placeholder="sign up for newsletter">
-    <input type="submit" name="" value="Subscribe">
-  <% } %>
 
-</footer>
+<!-- Footer -->
+
+<footer class="page-footer font-small ">
+
+    <!-- Footer Links -->
+      <div class="row">
+        <div class="column mb-md-0 mb-3">
+
+          <h5 class="text-uppercase">Folium</h5>
+          <hr>
+          <p>Folium is a pet project for folks who have difficulty with their green thumbs, but want to keep plant babies.</p>
+          <p>&copy; Copyright 2018</p>
+        </div>
+
+        <div class="column mt-md-0 mt-3">
+            <!-- Links -->
+
+            <h5 class="text-uppercase">Connect With Us!</h5>
+            <hr>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Facebook</a>
+              </li>
+              <li>
+                <a href="#!">Pinterest</a>
+              </li>
+              <li>
+                <a href="#!">Youtube</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Admin</h5>
+            <hr>
+            <% if (currentUser) {%>
+            <ul class="list-unstyled">
+              <li>
+                <!-- Make a new Plant in the Database -->
+                <a href="/plants/new">New Plant</a>
+              </li>
+              <li>
+                <!-- Make a new Admin user -->
+                <a href="/users/new">New User</a>
+              </li>
+              <li>
+                <!-- Log Out -->
+                <form action="/sessions?_method=DELETE" method="POST">
+                      <input class= "logout" type="submit" value="Logout"/>
+                </form>
+              </li>
+              <%} else { %>
+              <li>
+                <a href="/sessions/new">Log In</a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+    </div>
+
+
+
+  </footer>
