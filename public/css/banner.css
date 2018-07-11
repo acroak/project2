@@ -14,7 +14,7 @@
   color: #444;
 }
 @media (max-width: 576px) {
-  .banner{
-    font-size: 5em;
+  .a{
+    font-size: 3em;
   }
 }
