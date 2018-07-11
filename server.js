@@ -12,6 +12,8 @@ const session = require('express-session');
 
 const bcrypt = require('bcrypt');
 
+// const searchBar = require('./models/app.js');
+
 //Requires Schemas
 const User = require('./models/userModels.js');
 const Plants = require('./models/plantModel.js');
@@ -41,6 +43,9 @@ app.use('/users', userController);
 const sessionController = require('./controllers/sessionControllers.js')
 app.use('/sessions', sessionController);
 
+
+
+
 //************************************GET************************************
 app.get('/',(req,res)=>{
   res.redirect('/plants')
@@ -48,35 +53,44 @@ app.get('/',(req,res)=>{
 
 // GET INDEX
 app.get('/plants', (req,res)=>{
-  Plants.find({}, (err, allPlants)=>{
+  Plants.find({}, null, {sort: {name: 1}}, (err, allPlants)=>{
     res.render('index.ejs',{
       currentUser: req.session.currentUser,
       Plants: allPlants
     });
   })
 });
-// GET HERBS ONLY
-app.get('/herbs',(req,res)=>{
-  Plants.find({tags: {$in: ['herb']}}, (err, Plants)=>{
-    res.render('herbs.ejs',{
-      currentUser: req.session.currentUser,
-      Plants: Plants
-    });
-  })
-});
+
+
+
+//====================================ALPHABETICALLY==============
+//const alphaPlants = (Plants.find({}, null, {sort: {name: 1}})
+//console.log(alphaPlants);
 // GET HOUSEPLANTS ONLY
 app.get('/house-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['house plant']}}, (err, Plants)=>{
+    Plants.find({tags: {$in: ['house plant']}}, null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
       });
     })
+  // })//ALPHA
+ });
 
-});
+ // GET HERBS ONLY
+ app.get('/herbs',(req,res)=>{
+   Plants.find({tags: {$in: ['herb']}}, null, {sort: {name: 1}}, (err, Plants)=>{
+     res.render('herbs.ejs',{
+       currentUser: req.session.currentUser,
+       Plants: Plants
+     });
+   })
+ });
+
+
 //full sun
 app.get('/full-sun',(req,res)=>{
-    Plants.find({sun: {$in: ['full sun']}}, (err, Plants)=>{
+    Plants.find({sun: {$in: ['full sun']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -86,7 +100,7 @@ app.get('/full-sun',(req,res)=>{
 });
 //partial sun/Shade
 app.get('/partial',(req,res)=>{
-    Plants.find({sun: {$in: ['partial sun','partial shade']}}, (err, Plants)=>{
+    Plants.find({sun: {$in: ['partial sun','partial shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -96,7 +110,7 @@ app.get('/partial',(req,res)=>{
 });
 //full Shade
 app.get('/full-shade',(req,res)=>{
-    Plants.find({sun: {$in: ['full shade']}}, (err, Plants)=>{
+    Plants.find({sun: {$in: ['full shade']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -106,7 +120,7 @@ app.get('/full-shade',(req,res)=>{
 });
 //EASY TO GROW
 app.get('/easy-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['easy']}}, (err, Plants)=>{
+    Plants.find({tags: {$in: ['easy']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -116,7 +130,7 @@ app.get('/easy-plants',(req,res)=>{
 });
 //MODERATE TO GROW
 app.get('/moderate-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['moderate']}}, (err, Plants)=>{
+    Plants.find({tags: {$in: ['moderate']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
@@ -126,7 +140,7 @@ app.get('/moderate-plants',(req,res)=>{
 });
 //HARD TO GROW
 app.get('/hard-plants',(req,res)=>{
-    Plants.find({tags: {$in: ['hard']}}, (err, Plants)=>{
+    Plants.find({tags: {$in: ['hard']}},null, {sort: {name: 1}}, (err, Plants)=>{
       res.render('houseplants.ejs',{
         currentUser: req.session.currentUser,
         Plants: Plants
